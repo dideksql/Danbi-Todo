@@ -36,6 +36,18 @@ function Todo() {
     }));
   };
 
+    useEffect(() => {
+    localStorage.setItem('todosByDate', JSON.stringify(todosByDate));
+    }, [todosByDate]);
+
+  // ✅ 불러오기
+    useEffect(() => {
+    const saved = localStorage.getItem('todosByDate');
+    if (saved) {
+      setTodosByDate(JSON.parse(saved));
+    }
+    }, []);
+
   return (
     <div style={{ padding: '20px', maxWidth: '500px', margin: 'auto' }}>
       <h1>📝 My Todo App</h1>
